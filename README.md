@@ -23,11 +23,11 @@
 
 
 ## Зависимости 
-`google-cloud-dialogflow==2.51.0`
-`python-dotenv==1.2.3`
-`vk_api==11.10.1`
-`requests==2.34.2`
-`pyTelegramBotAPI==4.37.0`
+- `google-cloud-dialogflow==2.51.0`
+- `python-dotenv==1.2.3`
+- `vk_api==11.10.1`
+- `requests==2.34.2`
+- `pyTelegramBotAPI==4.37.0`
 
 ## Переменные окружения
 
