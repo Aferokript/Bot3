@@ -14,10 +14,11 @@ bot = telebot.TeleBot(telegram_token)
 
 def load_intent():
     with open('answers.json', 'r', encoding='utf-8') as file:
-        return json.load(file)
+        answers_json = file.read()
+    answers = json.loads(answers_json)
+    return answers
     
-    
-
+        
 def create_intent(project_id, display_name, training_phrases_parts, message_texts):
     intents_client = dialogflow.IntentsClient()
     parent = dialogflow.AgentsClient.agent_path(project_id)
