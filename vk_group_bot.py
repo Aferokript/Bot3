@@ -11,18 +11,15 @@ import requests
 
 def send_vk_message(vk, longpoll, project_id, language_code):
     for event in longpoll.listen():
-        if event.type == VkEventType.MESSAGE_NEW:
-            if event.to_me:
-                user_message = detect_intent_texts(project_id, f'vk_{event.user_id}', event.text, language_code)
-                if user_message is not None:
-                    vk.messages.send(
-                        user_id=event.user_id,
-                        message=user_message,
-                        random_id=random.randint(1, 2**31 - 1)
-                    )
-                    sys.stdout.write(f'От меня для {user_message}\n')
-            else:
-                sys.stdout.write(f'От меня для: {event.user_id}\n')
+        if event.type == VkEventType.MESSAGE_NEW and event.to_me:
+            user_message = detect_intent_texts(project_id, f'vk_{event.user_id}', event.text, language_code)
+            if user_message is not None:
+                vk.messages.send(
+                    user_id=event.user_id,
+                    message=user_message,
+                    random_id=random.randint(1, 2**31 - 1)
+                )
+                sys.stdout.write(f'От меня для {user_message}\n')
                     
 
 def main():
@@ -45,3 +42,4 @@ def main():
     
 if __name__ == '__main__':
     main()
+
