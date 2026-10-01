@@ -1,4 +1,5 @@
-import sys 
+import sys
+import time
 from bot_instance import bot
 import handlers
 import requests
@@ -6,9 +7,9 @@ import requests
 
 def main():
     try:
-        sys.stdout.write('Запускаем бота...')
         bot.polling(none_stop=True)
     except requests.RequestException as error:
+        time.sleep(5)
         sys.stderr.write(f'Ошибка {error}')
     
     
