@@ -36,13 +36,19 @@ def main():
     load_dotenv()
     
     project_id = os.environ['GOOGLE_PROJECT_ID']
-
-    
     intents = load_intent()
+    
     for intent_name, intent_answer in intents.items():
         create_intent(project_id, intent_name, intent_answer['questions'], [intent_answer['answer']])
 
     
-    
 if __name__ == '__main__':
     main()
+    
+   
+    
+    
+
+
+    
+
