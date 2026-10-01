@@ -40,9 +40,10 @@
 ## Переменные окружения
 
 - **`VK_GROUP_TOKEN`** — токен сообщества ВК. Получить: сообщество → Управление → Работа с API → создать ключ с правами `messages` и `manage`, включить Long Poll API.
-- **`GOOGLE_PROJECT_ID`** — ID проекта в Google Cloud. Получить: Dialogflow → Settings  → General → скопировать Project ID.
-- **`GOOGLE_APPLICATION_CREDENTIALS`** — путь к JSON-ключу сервисного аккаунта. Получить: Google Cloud Console → IAM & Admin → Service Accounts → создать аккаунт с ролью Dialogflow API Client (или Admin) → вкладка Keys → Add key → Create new key → JSON. Скачанный файл положить в проект, в переменной указать путь.
-- **`TG_TOKEN`** — токен Telegram-бота. Получить: Telegram → @BotFather → `/newbot` → задать имя и username → скопировать токен.
+- **`GOOGLE_PROJECT_ID`** — ID проекта в Google Cloud. Получить: Dialogflow → Settings  → General → скопировать Project ID
+- **`GOOGLE_APPLICATION_CREDENTIALS`** — путь к JSON-ключу сервисного аккаунта. Получить: Google Cloud Console → IAM & Admin → Service Accounts → создать аккаунт с ролью Dialogflow API Client (или Admin) → вкладка Keys → Add key → Create new key → JSON. Скачанный файл положить в проект, в переменной указать путь
+- **`TG_TOKEN`** — токен Telegram-бота. Получить: Telegram → @BotFather → `/newbot` → задать имя и username → скопировать токен
+- **`FILE_NAME`** - Имя файла, из которого функция load_intents берет данные для ответа
 
 - `После получения всех токенов, необходимо их записать. Для этого откройте файл .env и запишите их в таком виде: VK_GROUP_TOKEN=Ваш_Токен`
 
