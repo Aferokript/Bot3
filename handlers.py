@@ -10,9 +10,8 @@ def start(message):
 
 @bot.message_handler(content_types=['text'])
 def text_handler(message):
-    session_id = str(message.chat.id)
     chat_id = message.chat.id
-    user_text = detect_intent_texts(project_id, session_id, message.text, language_code=language_code)
+    user_text = detect_intent_texts(project_id, f'tg_{message.chat.id}', message.text, language_code=language_code)
     if user_text is not None:
         bot.send_message(chat_id, user_text)
     
