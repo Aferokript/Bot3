@@ -1,15 +1,7 @@
 import os 
 import json
-import telebot
 from dotenv import load_dotenv
 from google.cloud import dialogflow
-
-load_dotenv()
-
-project_id = os.environ['GOOGLE_PROJECT_ID']
-language_code = 'ru'
-telegram_token = os.getenv('TG_TOKEN')
-bot = telebot.TeleBot(telegram_token)
 
 
 def load_intent():
@@ -40,8 +32,17 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
     )
     
     
-intents = load_intent()
-for intent_name, intent_answer in intents.items():
-    create_intent(project_id, intent_name, intent_answer['questions'], [intent_answer['answer']])
+def main():
+    load_dotenv()
+    
+    project_id = os.environ['GOOGLE_PROJECT_ID']
 
     
+    intents = load_intent()
+    for intent_name, intent_answer in intents.items():
+        create_intent(project_id, intent_name, intent_answer['questions'], [intent_answer['answer']])
+
+    
+    
+if __name__ == '__main__':
+    main()
