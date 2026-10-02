@@ -11,18 +11,19 @@ import requests
 
 def send_vk_message(vk, longpoll, project_id, language_code):
     for event in longpoll.listen():
-        if event.type == VkEventType.MESSAGE_NEW:
-            if event.to_me:
-                user_message = detect_intent_texts(project_id, f'vk_{event.user_id}', event.text, language_code)
-                if user_message is not None:
-                    vk.messages.send(
-                        user_id=event.user_id,
-                        message=user_message,
-                        random_id=random.randint(1, 2**31 - 1)
-                    )
-                    sys.stdout.write(f'От меня для {user_message}\n')
-            else:
-                sys.stdout.write(f'От меня для: {event.user_id}\n')
+        if event.type != VkEventType.MESSAGE_NEW or not event.to_me:
+            continue
+        
+        user_message = detect_intent_texts(project_id, f'vk_{event.user_id}', event.text, language_code)
+        if user_message is None:
+            continue
+        
+        vk.messages.send(
+            user_id=event.user_id,
+            message=user_message,
+            random_id=random.randint(1, 2**31 - 1)
+        )
+        sys.stdout.write(f'От меня для {user_message}\n')
                     
 
 def main():
@@ -32,11 +33,11 @@ def main():
     project_id = os.environ['GOOGLE_PROJECT_ID']
     language_code = 'ru'
     vk_session = vk_api.VkApi(token=vk_group_token)
-    longpoll = VkLongPoll(vk_session)
     vk = vk_session.get_api()
     
     while True:
         try:
+            longpoll = VkLongPoll(vk_session)
             send_vk_message(vk, longpoll, project_id, language_code)
         except requests.RequestException as connection_error:
             time.sleep(5)
