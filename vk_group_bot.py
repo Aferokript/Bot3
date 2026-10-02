@@ -24,7 +24,7 @@ def send_vk_message(vk, longpoll, project_id, language_code):
             random_id=random.randint(1, 2**31 - 1)
         )
         sys.stdout.write(f'От меня для {user_message}\n')
-                    
+            
 
 def main():
     load_dotenv()
@@ -46,3 +46,4 @@ def main():
     
 if __name__ == '__main__':
     main()
+
